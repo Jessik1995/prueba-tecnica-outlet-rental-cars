@@ -20,11 +20,11 @@ export default function Summary() {
   if (!selected) return null
 
   return (
-    <section className="relative flex pt-24 bg-gray-100 h-[calc(100vh-52px)] pb-12">
+    <section className="relative flex pt-24 bg-gray-100 md:h-[calc(100vh-52px)] h-auto pb-12">
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 h-max">
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 h-max">
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">
+          <h1 className="md:text-2xl text-xl font-bold text-gray-900 mb-6">
             Resumen de tu reserva
           </h1>
 
@@ -35,25 +35,25 @@ export default function Summary() {
                 width={260}
                 height={160}
                 alt={selected.name}
-                className="max-h-36 object-contain"
+                className="md:max-h-36 max-h-24 object-contain"
               />
             </div>
 
             <div className="flex-1">
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="md:text-xl text-lg font-semibold text-gray-900">
                 {selected.name}
               </h2>
 
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="md:text-sm text-xs text-gray-500 mt-1">
                 Compacto · A/C · Automático
               </p>
 
               <div className="mt-6 border-t pt-4">
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                <h3 className="md:text-sm text-xs font-semibold text-gray-900 mb-2">
                   Incluido en el precio
                 </h3>
 
-                <ul className="text-sm text-gray-600 space-y-1">
+                <ul className="md:text-sm text-xs text-gray-600 space-y-1">
                   <li>✔ Seguro del auto (LDW)</li>
                   <li>✔ Cobertura por robo</li>
                   <li>✔ Kilómetros ilimitados</li>
@@ -65,7 +65,7 @@ export default function Summary() {
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 h-max">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          <h2 className="md:text-lg text-base font-semibold text-gray-900 mb-4">
             Total a pagar
           </h2>
 
@@ -73,12 +73,12 @@ export default function Summary() {
             <span className="text-base font-semibold text-gray-900">
               Total
             </span>
-            <span className="text-xl font-bold text-green-600">
+            <span className="md:text-xl text-base font-bold text-green-600">
               COP ${selected.price}
             </span>
           </div>
 
-          <button className="mt-6 w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-3 rounded-lg transition">
+          <button className="text-sm md:text-base mt-6 w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-3 rounded-lg transition">
             Continuar
           </button>
         </div>

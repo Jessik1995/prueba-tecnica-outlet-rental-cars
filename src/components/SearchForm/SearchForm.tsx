@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FormEvent } from 'react'
+import { FormEvent, useState, useRef } from 'react'
 import {
   MapPinIcon,
   CalendarIcon,
@@ -9,8 +9,23 @@ import {
 export const SearchForm = () => {
   const router = useRouter()
 
+  const [pickupDate, setPickupDate] = useState('')
+  const [dropoffDate, setDropoffDate] = useState('')
+  const [error, setError] = useState<string | null>(null)
+
+  const pickupDateRef = useRef<HTMLInputElement>(null)
+  const dropoffDateRef = useRef<HTMLInputElement>(null)
+
+  const today = new Date().toISOString().split('T')[0]
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+
+    if (dropoffDate < pickupDate) {
+      setError('La fecha de devolución debe ser posterior a la de recogida')
+      return
+    }
+
     router.push('/results')
   }
 
@@ -60,13 +75,26 @@ export const SearchForm = () => {
                 Fecha de recogida
               </label>
 
-              <div className="mt-1 flex items-center gap-3 w-full">
+              <div
+                className="mt-1 flex items-center gap-3 w-full cursor-pointer"
+                onClick={() => {
+                  pickupDateRef.current?.showPicker?.()
+                  pickupDateRef.current?.focus()
+                }}
+              >
                 <CalendarIcon className="h-5 w-5 shrink-0 text-purple-600" />
                 <input
+                  ref={pickupDateRef}
                   id="pickup-date"
                   type="date"
                   required
-                  className="flex-1 border-none p-0 text-base font-medium text-gray-900 focus:outline-none
+                  min={today}
+                  value={pickupDate}
+                  onChange={(e) => {
+                    setPickupDate(e.target.value)
+                    setError(null)
+                  }}
+                  className="flex-1 border-none bg-transparent p-0 text-base font-medium text-gray-900 focus:outline-none
                   appearance-none
                   [&::-webkit-calendar-picker-indicator]:hidden"
                 />
@@ -101,13 +129,26 @@ export const SearchForm = () => {
                 Fecha de devolución
               </label>
 
-              <div className="mt-1 flex items-center gap-3 w-full">
+              <div
+                className="mt-1 flex items-center gap-3 w-full cursor-pointer"
+                onClick={() => {
+                  dropoffDateRef.current?.showPicker?.()
+                  dropoffDateRef.current?.focus()
+                }}
+              >
                 <CalendarIcon className="h-5 w-5 shrink-0 text-purple-600" />
                 <input
+                  ref={dropoffDateRef}
                   id="dropoff-date"
                   type="date"
                   required
-                  className="flex-1 border-none p-0 text-base font-medium text-gray-900 focus:outline-none
+                  min={pickupDate || today}
+                  value={dropoffDate}
+                  onChange={(e) => {
+                    setDropoffDate(e.target.value)
+                    setError(null)
+                  }}
+                  className="flex-1 border-none bg-transparent p-0 text-base font-medium text-gray-900 focus:outline-none
                   appearance-none
                   [&::-webkit-calendar-picker-indicator]:hidden"
                 />
@@ -138,6 +179,12 @@ export const SearchForm = () => {
 
         </div>
       </div>
+
+      {error && (
+        <p className="mt-3 text-sm text-red-500">
+          {error}
+        </p>
+      )}
 
       <div className="mt-4 flex flex-col md:flex-row md:justify-end">
         <button
