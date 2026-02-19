@@ -1,40 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Prueba Técnica – Desarrollador Front-End  
+Jessica Quintero
 
-## Getting Started
+---
 
-First, run the development server:
+##  Cómo ejecutar el proyecto
 
+1. Clonar el repositorio:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <url-del-repositorio>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instalar dependencias:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Ejecutar el proyecto en modo desarrollo:
+```bash
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Abrir en el navegador:
+```
+http://localhost:3000
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##  Decisiones técnicas
 
-## Learn More
+### Framework
+Se utilizó **Next.js** como framework principal para aprovechar su sistema de rutas y la capacidad de renderizado del lado del servidor.
 
-To learn more about Next.js, take a look at the following resources:
+### Server-Side Rendering (SSR)
+La vista de resultados implementa **Server-Side Rendering** mediante `getServerSideProps`, permitiendo simular un flujo real de búsqueda y mejorar el rendimiento inicial de la página.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Estado global
+Se utilizó **Redux Toolkit + Thunk** para manejar:
+- Resultados de búsqueda
+- Vehículo seleccionado
+- Estados de carga (`loading`)
+- Manejo de errores (`error`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Mock de API
+No se utiliza una API real.  
+Los datos se obtienen a partir de un **mock de API**, consumido mediante un servicio asíncrono que simula una llamada GET.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##  Integración con pasarela de pago (conceptual)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. En la vista de resumen, se tomaría la información del vehículo seleccionado y del total a pagar.
+2. Al hacer clic en “Continuar”, se enviaría esta información a un endpoint del backend.
+3. El backend devolvería una URL o sesión de pago generada por la pasarela (por ejemplo, Stripe o MercadoPago).
+4. El Front-End redirigiría al usuario a la pasarela para completar el pago.
+5. Una vez finalizado el proceso, el usuario sería redirigido nuevamente a la aplicación para mostrar el estado final de la reserva.
