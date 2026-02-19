@@ -7,7 +7,7 @@ Jessica Quintero
 
 1. Clonar el repositorio:
 ```bash
-git clone <url-del-repositorio>
+git clone <git clone https://github.com/Jessik1995/prueba-tecnica-outlet-rental-cars.git>
 ```
 
 2. Instalar dependencias:
