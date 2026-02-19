@@ -10,17 +10,23 @@ Jessica Quintero
 git clone <git clone https://github.com/Jessik1995/prueba-tecnica-outlet-rental-cars.git>
 ```
 
-2. Instalar dependencias:
+2.Version de node
+```bash
+nvm use 20.11.0
+```
+
+3. Instalar dependencias:
 ```bash
 npm install
 ```
 
-3. Ejecutar el proyecto en modo desarrollo:
+4. Ejecutar el proyecto en modo desarrollo:
 ```bash
 npm run dev
 ```
 
-4. Abrir en el navegador:
+
+5. Abrir en el navegador:
 ```
 http://localhost:3000
 ```
