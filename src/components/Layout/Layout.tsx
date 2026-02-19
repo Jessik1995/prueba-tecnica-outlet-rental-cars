@@ -59,7 +59,7 @@ export const Layout = ({ children }: LayoutProps) => {
       </main>
 
 
-      <footer className=" left-0 w-full z-20">
+      <footer className=" left-0 w-full">
         <div className="mx-auto max-w-7xl  px-6 py-4 text-sm text-gray-500">
           © {new Date().getFullYear()} Outlet Rental Cars
         </div>

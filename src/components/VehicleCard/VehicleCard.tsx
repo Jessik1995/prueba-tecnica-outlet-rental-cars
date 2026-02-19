@@ -20,7 +20,7 @@ export const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
         />
       </div>
 
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-6 flex flex-col justify-between text-center md:text-left">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">
             {vehicle.name}
@@ -30,7 +30,7 @@ export const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
             Compacto · A/C · Automático
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-2">
             <span className="text-xs px-3 py-1 rounded-full border border-green-500 text-green-600">
               Todo incluido
             </span>
@@ -39,7 +39,7 @@ export const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
       </div>
 
       <div className="md:w-[280px] p-6 flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200">
-        <div className="text-right">
+        <div className="text-center md:text-right">
           <p className="text-xs text-gray-400 line-through">
             COP ${(vehicle.price * 1.4).toFixed(0)}
           </p>

@@ -20,7 +20,7 @@ export default function Summary() {
   if (!selected) return null
 
   return (
-    <section className="relative flex pt-24 bg-gray-100 md:h-[calc(100vh-52px)] h-auto pb-12">
+    <section className="relative flex pt-24 bg-gray-100 md:h-[calc(100vh-52px)] h-max pb-24 md:pb-12">
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 h-max">
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 h-max">
@@ -64,24 +64,35 @@ export default function Summary() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 h-max">
-          <h2 className="md:text-lg text-base font-semibold text-gray-900 mb-4">
+        <div className=" bg-white border border-gray-200 shadow-sm md:rounded-xl md:p-6 p-4 h-max fixed md:static bottom-0 left-0 right-0 md:border md:shadow-sm border-t md:border-gray-200 z-50">
+          <h2 className="md:text-lg text-sm font-semibold text-gray-900 mb-2 md:mb-4 md:block hidden">
             Total a pagar
           </h2>
 
-          <div className="border-t pt-4 flex justify-between items-center">
-            <span className="text-base font-semibold text-gray-900">
+          <div className="md:border-t  md:pt-4 pt-2 flex justify-between items-center">
+            <span className="text-sm md:text-base font-semibold text-gray-900">
               Total
             </span>
-            <span className="md:text-xl text-base font-bold text-green-600">
+
+            <span className="text-lg md:text-xl font-bold text-green-600">
               COP ${selected.price}
             </span>
           </div>
 
-          <button className="text-sm md:text-base mt-6 w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-3 rounded-lg transition">
+          <button
+            className="
+              mt-3 md:mt-6
+              w-full
+              bg-violet-600 hover:bg-violet-700
+              text-white font-semibold
+              py-3 rounded-lg
+              transition
+            "
+          >
             Continuar
           </button>
         </div>
+
       </div>
     </section>
   )
